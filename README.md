@@ -10,20 +10,20 @@ Você vai precisar de dois terminais abertos. É só seguir o passo a passo:
 
 ### 1. Instale o necessário
 Se é a primeira vez por aqui, instale as dependências:
-`ash
+`bash
 npm install
 `
 
 ### 2. Ligue o motor (Backend)
 Em um terminal, inicie o scraper que vai buscar as vagas:
-`ash
+`bash
 node backend-scraper.js
 `
 _Ele vai rodar na porta 4000._
 
 ### 3. Abra a interface (Frontend)
 Em **outro** terminal, inicie o servidor da interface visual:
-`ash
+`bash
 node server.js
 `
 _Acesse em: http://localhost:8080_
@@ -50,4 +50,4 @@ ode, backend, api).
 *   **Core:** Puppeteer (para o scraping).
 
 ---
-*Feito para freelancers, por freelancers.* 
+*Feito por Victor Ikaro.* 
