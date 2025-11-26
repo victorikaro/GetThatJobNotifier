@@ -16,14 +16,14 @@ npm install
 
 ### 2. Ligue o motor (Backend)
 Em um terminal, inicie o scraper que vai buscar as vagas:
-`bash
+`
 node backend-scraper.js
 `
 _Ele vai rodar na porta 4000._
 
 ### 3. Abra a interface (Frontend)
 Em **outro** terminal, inicie o servidor da interface visual:
-`bash
+`
 node server.js
 `
 _Acesse em: http://localhost:8080_
