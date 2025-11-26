@@ -45,7 +45,7 @@ _Acesse em: http://localhost:8080_
 ode, backend, api).
 
 ##  Tecnologias
-*   **Frontend:** HTML5, CSS3 (Liquid Glass), Vanilla JS.
+*   **Frontend:** HTML5, CSS3, Vanilla JS.
 *   **Backend:** Node.js, Express.
 *   **Core:** Puppeteer (para o scraping).
 
