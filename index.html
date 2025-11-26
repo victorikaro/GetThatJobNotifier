@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workana Job Scraper - Monitor de Vagas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Background Elements -->
+        <div class="bg-shape shape-1"></div>
+        <div class="bg-shape shape-2"></div>
+        <div class="bg-shape shape-3"></div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">
+                    <div class="pulse-ring"></div>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </div>
+                <h1>Workana<br><span>Scraper</span></h1>
+            </div>
+
+            <div class="sidebar-content custom-scrollbar">
+                <div class="control-group">
+                    <h3><i class="icon-settings"></i> Controle</h3>
+                    <div class="action-buttons">
+                        <button id="startBtn" class="btn btn-primary btn-block">
+                            <span class="btn-icon">▶</span> Iniciar
+                        </button>
+                        <button id="stopBtn" class="btn btn-secondary btn-block" disabled>
+                            <span class="btn-icon">⏸</span> Pausar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <h3><i class="icon-sliders"></i> Configurações</h3>
+                    
+                    <div class="setting-item setting-row">
+                        <span class="setting-label">Notificações</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="enableNotifications" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <label>Intervalo (seg)</label>
+                        <div class="range-slider">
+                            <input type="range" id="checkInterval" min="10" max="300" value="30">
+                            <span id="intervalValue">30s</span>
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <label>Máx. Vagas</label>
+                        <input type="number" id="maxJobs" value="50" class="input-dark">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <h3><i class="icon-filter"></i> Filtros</h3>
+                    
+                    <div class="filter-item">
+                        <label>Categorias</label>
+                        <div class="chips-container">
+                            <label class="chip">
+                                <input type="checkbox" class="category-filter" value="ti-programacao" checked>
+                                <span>Dev</span>
+                            </label>
+                            <label class="chip">
+                                <input type="checkbox" class="category-filter" value="design-multimedia">
+                                <span>Design</span>
+                            </label>
+                            <label class="chip">
+                                <input type="checkbox" class="category-filter" value="marketing-vendas">
+                                <span>Mkt</span>
+                            </label>
+                            <label class="chip">
+                                <input type="checkbox" class="category-filter" value="traducao-conteudos">
+                                <span>Texto</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-item">
+                        <label>Orçamento Mín. (USD)</label>
+                        <div class="input-group">
+                            <span class="prefix">$</span>
+                            <input type="number" id="minBudget" placeholder="0" class="input-dark">
+                        </div>
+                    </div>
+
+                    <div class="filter-item">
+                        <label>Palavras-chave</label>
+                        <input type="text" id="keywordFilter" placeholder="react, node..." class="input-dark">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <button id="clearBtn" class="btn btn-ghost btn-sm">Limpar Dados</button>
+                <button id="requestPermissionBtn" class="btn btn-ghost btn-sm icon-only" title="Permissões">🔔</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="status-indicator">
+                    <span class="status-dot" id="statusDot"></span>
+                    <span id="statusText">Aguardando</span>
+                </div>
+                <div class="last-update">
+                    Última verificação: <span id="lastCheck">--:--:--</span>
+                </div>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon color-1">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="totalJobs">0</span>
+                        <span class="stat-label">Total Encontrado</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon color-2">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"></path></svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="newJobs">0</span>
+                        <span class="stat-label">Novas Vagas</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon color-3">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="avgBudget">--</span>
+                        <span class="stat-label">Média Orçamento</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-split">
+                <div class="jobs-section glass-panel">
+                    <div class="section-header">
+                        <h2>Feed de Vagas</h2>
+                        <div class="live-badge">AO VIVO</div>
+                    </div>
+                    <div id="jobsList" class="jobs-list custom-scrollbar">
+                        <div class="empty-state">
+                            <div class="empty-icon">📡</div>
+                            <p>Inicie o monitoramento para buscar vagas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="logs-section glass-panel">
+                    <div class="section-header">
+                        <h2>Atividade</h2>
+                    </div>
+                    <div id="logsList" class="logs-list custom-scrollbar"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="scraper.js"></script>
+    <script src="visuals.js"></script>
+</body>
+</html>

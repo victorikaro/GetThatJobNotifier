@@ -1,0 +1,25 @@
+{
+  "name": "workana-job-scraper",
+  "version": "1.0.0",
+  "description": "Sistema web scraper para monitorar vagas do Workana com notificações",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "backend": "node backend-scraper.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "workana",
+    "scraper",
+    "jobs",
+    "notifications",
+    "web-scraping"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "puppeteer": "^21.6.1",
+    "cors": "^2.8.5"
+  }
+}
