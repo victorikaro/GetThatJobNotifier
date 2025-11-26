@@ -1,4 +1,4 @@
-﻿#  Workana Job Monitor
+﻿#  Get That Job!
 
 Bem-vindo ao seu novo assistente de busca de vagas. Este projeto foi criado para automatizar aquela tarefa repetitiva de ficar dando F5 no Workana o dia todo. Ele monitora as vagas para você e te avisa quando algo interessante aparece.
 
