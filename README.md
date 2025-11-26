@@ -10,7 +10,7 @@ Você vai precisar de dois terminais abertos. É só seguir o passo a passo:
 
 ### 1. Instale o necessário
 Se é a primeira vez por aqui, instale as dependências:
-`bash
+`
 npm install
 `
 
