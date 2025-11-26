@@ -43,7 +43,11 @@ app.get('/api/scrape-jobs', async (req, res) => {
         await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
         
         const categorySlug = categoryMap[categories.split(',')[0]] || 'it-programming';
-        const url = `https://www.workana.com/jobs?language=pt&category=${categorySlug}`;
+        let url = `https://www.workana.com/jobs?language=pt&category=${categorySlug}`;
+        
+        if (countries && countries.length > 0 && countries !== 'undefined') {
+            url += `&country=${countries.toLowerCase()}`;
+        }
         
         console.log(`Acessando: ${url}`);
         

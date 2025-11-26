@@ -174,7 +174,7 @@ body.monitoring .pulse-ring {
 }
 
 .control-group {
-    margin-bottom: 32px;
+    margin-bottom: 40px;
 }
 
 .control-group h3 {
@@ -182,7 +182,7 @@ body.monitoring .pulse-ring {
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--text-muted);
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -191,7 +191,7 @@ body.monitoring .pulse-ring {
 /* ==================== CONTROLS & INPUTS ==================== */
 
 .setting-item {
-    margin-bottom: 16px;
+    margin-bottom: 24px;
 }
 
 .setting-row {
@@ -208,8 +208,28 @@ body.monitoring .pulse-ring {
 .setting-item label:not(.toggle-switch) {
     display: block;
     font-size: 0.9rem;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     color: var(--text-main);
+}
+
+.filter-item {
+    margin-bottom: 24px;
+}
+
+.filter-item label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    color: var(--text-main);
+}
+
+.sidebar-footer {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-glass);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .input-dark {
@@ -227,6 +247,25 @@ body.monitoring .pulse-ring {
     outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 2px var(--primary-glow);
+}
+
+/* Input Group */
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-group .prefix {
+    position: absolute;
+    left: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+    z-index: 1;
+}
+
+.input-group input {
+    padding-left: 28px; /* Space for the prefix */
 }
 
 /* Toggle Switch */
@@ -339,6 +378,23 @@ input[type="range"]::-webkit-slider-thumb {
     align-items: center;
     justify-content: center;
     gap: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+
+.icon-only {
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-block {

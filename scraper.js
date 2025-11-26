@@ -45,6 +45,12 @@ class WorkanaJobScraper {
         document.getElementById('minBudget').value = this.config.minBudget || '';
         document.getElementById('keywordFilter').value = this.config.keywords.join(', ');
         
+        // Set region filter
+        const regionSelect = document.getElementById('regionFilter');
+        if (regionSelect && this.config.countries && this.config.countries.length > 0) {
+            regionSelect.value = this.config.countries[0];
+        }
+        
         document.querySelectorAll('.category-filter').forEach(cb => {
             cb.checked = this.config.categories.includes(cb.value);
         });
@@ -66,8 +72,13 @@ class WorkanaJobScraper {
         
         this.config.categories = Array.from(document.querySelectorAll('.category-filter:checked'))
             .map(cb => cb.value);
-        
-        // Countries removed from UI in this version, keeping default
+            
+        // Update countries from UI
+        const regionSelect = document.getElementById('regionFilter');
+        if (regionSelect) {
+            const selectedRegion = regionSelect.value;
+            this.config.countries = selectedRegion ? [selectedRegion] : [];
+        }
         
         this.saveConfig();
     }
@@ -83,7 +94,7 @@ class WorkanaJobScraper {
             document.getElementById('intervalValue').textContent = `${e.target.value}s`;
         });
 
-        document.querySelectorAll('.category-filter, #keywordFilter, #minBudget, #enableNotifications, #checkInterval, #maxJobs').forEach(el => {
+        document.querySelectorAll('.category-filter, #keywordFilter, #minBudget, #enableNotifications, #checkInterval, #maxJobs, #regionFilter').forEach(el => {
             el.addEventListener('change', () => this.updateConfigFromUI());
         });
     }
